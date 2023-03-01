@@ -1,0 +1,78 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сайт-Шаблон</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="css/button.css" rel="stylesheet" type="text/css">
+    <script src="js/button.js"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/include-html.min.js"></script>
+
+  </head>
+  <body>
+    <div include-html="header.html" id="header_file"></div>
+
+
+
+
+
+    <div class="container-fluid" style="margin-top: 10px;">
+
+      <div id="center" class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-color: white !important; border: 4px double black;">
+          <div class="col-md-12 px-0">
+            <h1 class="display-4 font-italic" align="center" style="color: black;">Основы Python</h1>
+            <p class="lead my-3" align="center" style="color: black;">На данном пробном сайте вы можете ознакомится с основами Python</p>
+            <p class="lead mb-0" align="center" style="color: black;"><a href="https://www.python.org" class="text-black font-weight-bold">Ссылка на Python</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+          <p align="center">
+              
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Нажмите чтобы посмотреть разбор задания 7.118
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample" style="width: 100%;">
+              <div class="card card-body" style="width: 100%;">
+                  <div class="card">
+                      <div class="card-header" align="center" style="font-size: 24px;">
+                        <b>Разбор 7.118</b>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Задание 7.188 из задачника</h5>
+                          <pre style="margin-bottom: 0; width: auto;">
+"""Даны натуральное число n и целые числа a1, a2, …, an,
+среди которых имеются числа, равные 10. Найти:
+а) номер последнего из них;
+б) номер первого из них."""
+n = int(input('Введите количество элементов a для ввода: '))
+for i in range(1,n+1):
+  print("Введите элемент A",i,": ")
+  a = int(input())
+  if a == 10:
+    countA = i
+    break #break для буквы б)
+print(countA)</pre>
+                      </div>
+                    </div>
+              </div>
+            </div>
+      
+      </div>
+ 
+    
+
+<div include-html="footer.html" id="footer_file"></div>
+      <button onclick="topFunction()" id="myBtn" title="Go to top">В начало</button>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
