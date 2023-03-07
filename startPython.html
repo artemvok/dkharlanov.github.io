@@ -206,7 +206,7 @@ print(countA)</pre>
                         <b>Разбор задания 8.19</b>
                       </div>
                       <div class="card-body">
-                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Основы Python</h5>
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Разбор задания 8.19</h5>
                           <pre style="margin-bottom: 0; width: auto;">
 """
  Последовательность Фибоначчи образуется так: первый
@@ -236,6 +236,65 @@ x, x1, x2 = 1, 1, 1
 while x <= n:
     x = x1 + x2
     x1, x2 = x2, x
+print(x)
+</pre>
+                      </div>
+                    </div>
+              </div>
+            </div>
+      
+      </div>
+
+
+
+  <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+          <p align="center">
+              
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_4" aria-expanded="false" aria-controls="collapseExample_4">
+                Нажмите чтобы посмотреть разбор темы <br>
+                "Повторение повторяющихся действий"<br>
+                            и разбор задания 9.46
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample_4" style="width: 100%;">
+              <div class="card card-body" style="width: 100%;">
+                  <div class="card">
+                      <div class="card-header" align="center" style="font-size: 24px;">
+                        <b>Разбор темы "Повторение повторяющихся действий"<br>
+                            и разбор задания 9.46</b>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Разбор темы "Повторение повторяющихся действий"<br>
+                            и разбор задания 9.46</h5>
+                          <pre style="margin-bottom: 0; width: auto;">
+# Повторение повторяющихся действий
+
+for i in range(2, 10):              # внешний цикл
+    for j in range(1, 10):          # внутренний цикл
+        print(i, "*", j, "=", i*j)  # тело цикла
+
+
+for i in range(1, 10):              # внешний цикл
+    for j in range(1, 10):          # внутренний цикл
+        print(1, end = " ")         # тело цикла
+    print()
+
+
+"""9.46*. Составить программу нахождения цифрового корня натурального числа. 
+Цифровой корень данного числа получается 
+следующим образом. Если сложить все цифры этого числа, затем все 
+цифры найденной суммы и  повторять этот процесс, то 
+в результате будет получено однозначное число (цифра), которое 
+и  называется цифровым корнем данного числа"""
+
+x = int(input())
+while x > 10:       # внешний цикл (предназначен для работы пока число не станет однозначным)
+    sum = 0
+    while x > 0:    # внутренний цикл (ищет сумму цифр цисла)
+        a = x % 10
+        sum += a
+        x //= 10
+    x = sum
 print(x)
 </pre>
                       </div>
