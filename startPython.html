@@ -190,6 +190,60 @@ print(countA)</pre>
             </div>
       
       </div>
+
+
+  <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+          <p align="center">
+              
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_3" aria-expanded="false" aria-controls="collapseExample_3">
+                Нажмите чтобы посмотреть разбор задания 8.19
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample_3" style="width: 100%;">
+              <div class="card card-body" style="width: 100%;">
+                  <div class="card">
+                      <div class="card-header" align="center" style="font-size: 24px;">
+                        <b>Разбор задания 8.19</b>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Основы Python</h5>
+                          <pre style="margin-bottom: 0; width: auto;">
+"""
+ Последовательность Фибоначчи образуется так: первый
+и второй члены последовательности равны 1, каждый следующий
+равен сумме двух предыдущих (1, 1, 2, 3, 5, 8, 13, ...). Найти:
+а)сумму всех чисел в последовательности Фибоначчи, которые
+не превосходят 1000;
+б)первое число в  последовательности Фибоначчи, большее n
+(значение n вводится с клавиатуры; n > 1).
+"""
+
+#а)
+x, x1, x2 = 1, 1, 1
+sum = 2
+while True:
+    x = x1 + x2
+    if x > 1000:
+        break
+    x1, x2 = x2, x
+    sum += x
+print(sum)
+
+
+#б)
+n = int(input())
+x, x1, x2 = 1, 1, 1
+while x <= n:
+    x = x1 + x2
+    x1, x2 = x2, x
+print(x)
+</pre>
+                      </div>
+                    </div>
+              </div>
+            </div>
+      
+      </div>
  
     
 
