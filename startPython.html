@@ -154,6 +154,68 @@ print(a ** b)  # возведение в степень</pre>
 
 
 
+    <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+          <p align="center">
+              
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_Type_of_Divide" aria-expanded="false" aria-controls="collapseExample_Type_of_Divide">
+                Нажмите чтобы посмотреть разбор типов деления в Python
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample_Type_of_Divide" style="width: 100%;">
+              <div class="card card-body" style="width: 100%;">
+                  <div class="card">
+                      <div class="card-header" align="center" style="font-size: 24px;">
+                        <b>Типы деления в Python</b>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Типы деления Python</h5>
+                          <pre style="margin-bottom: 0; width: auto;">
+# Типы деления в Python
+# 1) Математический: 5 / 2 = 2.5
+# 2) Узнаём целую часть от деления: 5 // 2 = 2
+# 3) Узнаём остаток от деления: 5 % 2 = 1
+
+print(5 / 2)
+print(5 // 2)
+print(5 % 2)
+
+# Найдём сумму цифр двузначного числа
+# Ввод двузначного числа с клавиатуры
+x = int(input('Введите двузначное число: '))
+# Узнаём 1 цифру (кол-во десятков),
+# методом деления №2
+x1 = x // 10
+# Узнаём 2 цифру (кол-во единиц),
+# методом деления №3
+x2 = x % 10
+# Выводим сумму цифр двузначного числа
+print(x1 + x2)
+
+# Найдём сумму цифр трёхзначного числа
+# Ввод трёхзначного числа с клавиатуры
+x = int(input('Введите трёхзначное число: '))
+# Узнаём 1 цифру (кол-во сотен),
+# методом деления №2
+x1 = x // 100
+# Узнаём 2 цифру (кол-во десятков),
+# методом деления №2 и №3
+x2 = (x // 10) % 10
+# Узнаём 3 цифру (кол-во единиц),
+# методом деления №3
+x3 = x % 10
+# Выводим сумму цифр трёхзначного числа
+print(x1 + x2 + x3)</pre>
+                      </div>
+                    </div>
+              </div>
+            </div>
+      
+      </div>
+
+    
+    
+    
+    
 
 
       <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
