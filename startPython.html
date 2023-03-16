@@ -421,6 +421,44 @@ for i in range(15): # вывод 15 рандомных значений в ди�
               </div>
             </div>  
  
+          
+          
+ <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+          <p align="center">
+              
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_List" aria-expanded="false" aria-controls="collapseExample_List">
+                Нажмите чтобы посмотреть тему: Списки в Python
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample_List" style="width: 100%;">
+              <div class="card card-body" style="width: 100%;">
+                  <div class="card">
+                      <div class="card-header" align="center" style="font-size: 24px;">
+                        <b>Тема: Списки в Python</b>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" align="center" style="margin-bottom: 10px;">Тема: Списки в Python</h5>
+                          <pre style="margin-bottom: 0; width: auto;">         
+import random
+
+weather = [0] * 31
+print(weather)
+
+summ = 0
+
+for i in range(31):
+    weather[i] = random.randint(-10,15)
+    summ += weather[i]
+print(summ/31)
+
+for i in range(31):
+    if weather[i] >=0:
+        print(i+1, "марта , была температура", weather[i],"градусов")
+</pre>
+                      </div>
+                    </div>
+              </div>
+            </div>  
     
 
 <div include-html="footer.html" id="footer_file"></div>
