@@ -94,7 +94,7 @@ function tasksTable (data) {
 			
 			//формируем содержание таблицы
 			tr += `<tr ${color}>
-						<td class="align-middle">${data.Tf[i].c[0].f}</td>
+						<td class="align-middle">${data.Tf[i].c[0]}</td>
 						<td class="align-middle text-left">${data.Tf[i].c[1].v}</td>
 						<td class="align-middle"><button type="button" class="btn btn-link" onclick="updateTaskModal('${data.Tf[i].c[1].v}', '${data.Tf[i].c[2].v}', 'status')">${status}</button></td>
 						<td class="align-middle"><button type="button" class="btn btn-link" onclick="deleteTask('${data.Tf[i].c[1].v}')">Удалить</button></td>
