@@ -82,9 +82,11 @@ function tasksTable (data) {
 			th += `<th>${data.Sf[i].label}</th>`;
 		}
 
+		th =`<tr>${th}<th>Удалить</th></tr>`;
+
 		var tr = '';
 		for ( i = 0; i < data.Tf.length; i++ ) {
-			
+			var status = ( data.Tf[i].c[2].v == 0 ) ? `В очереди` : `Выполнена`;
 			var color = ( data.Tf[i].c[2].v == 1 ) ? `class="table-success"` : ``;
 			//внутри "c" (content) может содержаться два значения:
 			//v - само значение (value)
@@ -94,7 +96,9 @@ function tasksTable (data) {
 			tr += `<tr ${color}>
 						<td class="align-middle">${data.Tf[i].c[0].f}</td>
 						<td class="align-middle text-left">${data.Tf[i].c[1].v}</td>
-						</tr>`;
+						<td class="align-middle"><button type="button" class="btn btn-link" onclick="updateTaskModal('${data.Tf[i].c[1].v}', '${data.Tf[i].c[2].v}', 'status')">${status}</button></td>
+						<td class="align-middle"><button type="button" class="btn btn-link" onclick="deleteTask('${data.Tf[i].c[1].v}')">Удалить</button></td>
+					</tr>`;
 		}
 		//формируем и возвращаем готовую таблицу
 		return `<table class="table text-center"><thead>${th}</thead><tbody>${tr}</tbody></table>`;
