@@ -82,11 +82,9 @@ function tasksTable (data) {
 			th += `<th>${data.Sf[i].label}</th>`;
 		}
 
-		th =`<tr>${th}<th>Удалить</th></tr>`;
-
 		var tr = '';
 		for ( i = 0; i < data.Tf.length; i++ ) {
-			var status = ( data.Tf[i].c[2].v == 0 ) ? `В очереди` : `Выполнена`;
+			
 			var color = ( data.Tf[i].c[2].v == 1 ) ? `class="table-success"` : ``;
 			//внутри "c" (content) может содержаться два значения:
 			//v - само значение (value)
@@ -95,7 +93,7 @@ function tasksTable (data) {
 			//формируем содержание таблицы
 			tr += `<tr ${color}>
 						<td class="align-middle">${data.Tf[i].c[0].f}</td>
-						<td class="align-middle text-left"><pre>${data.Tf[i].c[1].v}</pre></td>
+						<td class="align-middle text-left">${data.Tf[i].c[1].v}</td>
 						</tr>`;
 		}
 		//формируем и возвращаем готовую таблицу
@@ -104,7 +102,25 @@ function tasksTable (data) {
 }
 
 
+function addTaskModal() {
+	var title = `Новая задача`;
 
+	var form = `<form id="addTaskForm" onsubmit="return false;">
+	              <div class="form-group">
+	                <label for="task">Задача</label>
+	                <input id="task" name="task" class="form-control form-control-sm" type="text">
+	              </div>
+	            </form>`;
+
+	var buttons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            	   <button type="button" class="btn btn-success" onclick="addTask()">Сохранить</button>`;
+
+
+	$('#commonModal .modal-header .modal-title').html(title);
+	$('#commonModal .modal-body').html(form);
+	$('#commonModal .modal-footer').html(buttons);
+	$('#commonModal').modal('show');
+}
 
 function addTask () {
 	var task = $('#task').val();
@@ -123,9 +139,46 @@ function addTask () {
 	try { xhr.send(body);} catch (err) {console.log(err) }
 }
 
+function deleteTask (task) {
+	var action = "deleteTask";
+	var xhr = new XMLHttpRequest();
+	var body = `task=${encodeURIComponent(task)}&action=${encodeURIComponent(action)}`;
+	xhr.open("POST", myApp, true);
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+        	alert(xhr.response);
+			loadTasks ();//обновляем список задач
+        }
+    };
+	try { xhr.send(body);} catch (err) {console.log(err) }
+}
+
+function updateTaskModal(task, currentValue, where) {
+	var title = `Редактировать задачу`;
+
+	switch (where) {
+		case "status":
+			var input = `<div class="form-group">
+			                <label for="status">Статус</label>
+			                <select id="status" name="status" class="form-control form-control-sm">
+			                	<option value="0" ${isSelected(currentValue, 0)}>В очереди</option>
+			                	<option value="1" ${isSelected(currentValue, 1)}>Выполнена</option>
+			                </select>
+			            </div>`;
+			break;
+	}
+
+	var form = `<form id="updateTaskForm" onsubmit="return false;">${input}</form>`;
+	var buttons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            	   <button type="button" class="btn btn-success" onclick="updateTask('${task}', '${where}')">Сохранить</button>`;
 
 
-
+	$('#commonModal .modal-header .modal-title').html(title);
+	$('#commonModal .modal-body').html(form);
+	$('#commonModal .modal-footer').html(buttons);
+	$('#commonModal').modal('show');
+}
 
 function isSelected(currentValue, value) {
 	if (currentValue == value) return `selected`;
@@ -152,5 +205,3 @@ function updateTask(task, where) {
         }
     };
 	try { xhr.send(body);} catch (err) {console.log(err) }
-
-}
