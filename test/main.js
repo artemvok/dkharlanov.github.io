@@ -1,5 +1,5 @@
-var myApp = "https://script.google.com/macros/s/AKfycbw4R7c_q11ZXSRz-axp1rvN8US5pHo02-c1mgbd32Met2i9zly1q3inQwaD-BSnSslzWw/exec";//URL нашего приложения
-var tasks = "1Z-xBIavDX8bhQuaHkd6DYUVAuVQNHY22v3rMmaCJsoI";//уникальный идентификатор нашей таблицы
+var myApp = "https://script.google.com/macros/s/AKfycbxReyUtjtKLv1l3ycsex_ozJ--AphDLQbGmxw_8T_37m6AJX-16EXo00tR-bOlSiosLqA/exec";//URL нашего приложения
+var tasks = "1fbfPhUc3brlOMU_aaVwUsXnRItLlJO4emw6id4olG-Y";//уникальный идентификатор нашей таблицы
 
 $( document ).ready(function() {//функция запускается, как только страница будет готова для просмотра пользователю
 	loadTasks ();//запускаем функцию для получения списка задач
@@ -75,138 +75,29 @@ function tasksTable (data) {
 		//внутри объекта data находятся еще два объекта:
 		//Sf - хранит в себе данные из первой строки таблицы, принимая их за заголовки
 		//Tf - хранит в себе данные строк таблицы в виде массива
-		
-		var th = ``;
-		for (i = 0; i < data.Sf.length; i++){
-			//формируем заголовки таблицы
-			th += `<th>${data.Sf[i].label}</th>`;
-		}
-
-		th =`<tr>${th}<th>Удалить</th></tr>`;
-
-		var tr = '';
+	x=''
 		for ( i = 0; i < data.Tf.length; i++ ) {
-			var status = ( data.Tf[i].c[2].v == 0 ) ? `В очереди` : `Выполнена`;
-			var color = ( data.Tf[i].c[2].v == 1 ) ? `class="table-success"` : ``;
 			//внутри "c" (content) может содержаться два значения:
 			//v - само значение (value)
 			//f - значение в форматированном виде. Время мы будем брать именно отсюда
 			
 			//формируем содержание таблицы
-			tr += `<tr ${color}>
-						<td class="align-middle">${data.Tf[i].c[0]}</td>
-						<td class="align-middle text-left">${data.Tf[i].c[1].v}</td>
-						<td class="align-middle"><button type="button" class="btn btn-link" onclick="updateTaskModal('${data.Tf[i].c[1].v}', '${data.Tf[i].c[2].v}', 'status')">${status}</button></td>
-						<td class="align-middle"><button type="button" class="btn btn-link" onclick="deleteTask('${data.Tf[i].c[1].v}')">Удалить</button></td>
-					</tr>`;
-		}
+			
+		
 		//формируем и возвращаем готовую таблицу
-		return `<table class="table text-center"><thead>${th}</thead><tbody>${tr}</tbody></table>`;
+		x+= `		
+		<div class="card" style="width=50%">
+		<div class="card-header">
+		${data.Tf[i].c[1].v}
+		</div>
+		<div class="card-body">
+		  <blockquote class="blockquote mb-0">
+			<p><pre>${data.Tf[i].c[2].v}</pre></p>
+			
+		  </blockquote>
+		</div>
+	  </div>`
+	}
+	return x;
 	})
-}
-
-
-function addTaskModal() {
-	var title = `Новая задача`;
-
-	var form = `<form id="addTaskForm" onsubmit="return false;">
-	              <div class="form-group">
-	                <label for="task">Задача</label>
-	                <input id="task" name="task" class="form-control form-control-sm" type="text">
-	              </div>
-	            </form>`;
-
-	var buttons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-            	   <button type="button" class="btn btn-success" onclick="addTask()">Сохранить</button>`;
-
-
-	$('#commonModal .modal-header .modal-title').html(title);
-	$('#commonModal .modal-body').html(form);
-	$('#commonModal .modal-footer').html(buttons);
-	$('#commonModal').modal('show');
-}
-
-function addTask () {
-	var task = $('#task').val();
-	var action = "addTask";
-	var xhr = new XMLHttpRequest();
-	var body = `task=${encodeURIComponent(task)}&action=${encodeURIComponent(action)}`;
-	xhr.open("POST", myApp, true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-        	$('#commonModal .alert-area').html(`<div class="alert alert-success" role="alert">${xhr.response}</div>`);
-        	document.getElementById("addTaskForm").reset();//сбрасываем форму
-			loadTasks ();//обновляем список задач
-        }
-    };
-	try { xhr.send(body);} catch (err) {console.log(err) }
-}
-
-function deleteTask (task) {
-	var action = "deleteTask";
-	var xhr = new XMLHttpRequest();
-	var body = `task=${encodeURIComponent(task)}&action=${encodeURIComponent(action)}`;
-	xhr.open("POST", myApp, true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-        	alert(xhr.response);
-			loadTasks ();//обновляем список задач
-        }
-    };
-	try { xhr.send(body);} catch (err) {console.log(err) }
-}
-
-function updateTaskModal(task, currentValue, where) {
-	var title = `Редактировать задачу`;
-
-	switch (where) {
-		case "status":
-			var input = `<div class="form-group">
-			                <label for="status">Статус</label>
-			                <select id="status" name="status" class="form-control form-control-sm">
-			                	<option value="0" ${isSelected(currentValue, 0)}>В очереди</option>
-			                	<option value="1" ${isSelected(currentValue, 1)}>Выполнена</option>
-			                </select>
-			            </div>`;
-			break;
-	}
-
-	var form = `<form id="updateTaskForm" onsubmit="return false;">${input}</form>`;
-	var buttons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-            	   <button type="button" class="btn btn-success" onclick="updateTask('${task}', '${where}')">Сохранить</button>`;
-
-
-	$('#commonModal .modal-header .modal-title').html(title);
-	$('#commonModal .modal-body').html(form);
-	$('#commonModal .modal-footer').html(buttons);
-	$('#commonModal').modal('show');
-}
-
-function isSelected(currentValue, value) {
-	if (currentValue == value) return `selected`;
-}
-
-function updateTask(task, where) {
-	var action = "updateTask";
-
-	switch (where) {
-		case "status":
-			var newValue = $('#status').val();
-			break;
-	}
-	
-	var xhr = new XMLHttpRequest();
-	var body = `task=${encodeURIComponent(task)}&where=${encodeURIComponent(where)}&newValue=${encodeURIComponent(newValue)}&action=${encodeURIComponent(action)}`;
-
-	xhr.open("POST", myApp, true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-			$('#commonModal .alert-area').html(`<div class="alert alert-success" role="alert">${xhr.response}</div>`);
-			loadTasks ();//обновляем список задач
-        }
-    };
-	try { xhr.send(body);} catch (err) {console.log(err) }
 }
