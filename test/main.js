@@ -1,4 +1,4 @@
-var myApp = "https://script.google.com/macros/s/AKfycbxo5AEgRVYqDdmgQuzOdJp3_tld9VFlGI0D5To4ma0ypKj_3Yscxl1mr4B3ZPRdp2F3Sw/exec";//URL нашего приложения
+var myApp = "https://script.google.com/macros/s/AKfycbw4R7c_q11ZXSRz-axp1rvN8US5pHo02-c1mgbd32Met2i9zly1q3inQwaD-BSnSslzWw/exec";//URL нашего приложения
 var tasks = "1Z-xBIavDX8bhQuaHkd6DYUVAuVQNHY22v3rMmaCJsoI";//уникальный идентификатор нашей таблицы
 
 $( document ).ready(function() {//функция запускается, как только страница будет готова для просмотра пользователю
