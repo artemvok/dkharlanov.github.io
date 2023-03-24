@@ -1,5 +1,5 @@
-var myApp = "";//URL нашего приложения
-var tasks = "";//уникальный идентификатор нашей таблицы
+var myApp = "https://script.google.com/macros/s/AKfycbxAdiefze5Fhvrrp6l_5Ye0w1vEJ6nGistr-56vQazwR8mOUYQuHkQWqsBblG52s8aC/exec";//URL нашего приложения
+var tasks = "https://docs.google.com/spreadsheets/d/1Z-xBIavDX8bhQuaHkd6DYUVAuVQNHY22v3rMmaCJsoI/edit#gid=0";//уникальный идентификатор нашей таблицы
 
 $( document ).ready(function() {//функция запускается, как только страница будет готова для просмотра пользователю
 	loadTasks ();//запускаем функцию для получения списка задач
