@@ -209,3 +209,4 @@ function updateTask(task, where) {
         }
     };
 	try { xhr.send(body);} catch (err) {console.log(err) }
+}
