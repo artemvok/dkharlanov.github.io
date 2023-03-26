@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +14,7 @@
 
   </head>
   <body>
-    <div include-html="header.html" id="header_file"></div>
+    <div include-html="../header.html" id="header_file"></div>
 
 
 
@@ -31,170 +32,60 @@
 
 
 
-      <div class="container-fluid" style="margin-top: 10px;">
-     
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="width: 100%;">
-        Button with data-bs-target
-      </button>
-    </p>
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <div class="row">
-          <div class="col-xl-4">
-            <div class="card text-center">
-              <div class="card-header">
-                Featured
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <!-- Кнопка-триггер модального окна -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Запустить модальное окно со статическим фоном
-</button>
 
-<!-- Модальное окно -->
-<div class="container-fluid" style="margin-top: 10px;">
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Заголовок модального окна</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-          <div align="left">
-            <pre style="margin-bottom: 0; width: auto;">
-              print() # команда для вывода информации на экран
-              
-              #возможные варианты использования команды print()
-              
-              print(5) # вывод числа (целочисленный тип данных ->
-                       # обыкновенные числа используемые при счёте)
-                       # Пример (-10, -9, ... 0, ... 9, 10)
-              
-              print(5.5) # вывод дробного числа (вещественный тип данных ->
-                         # числа с остатком)
-                         # Пример (-10.1, -9.2, ... 0, ... 9.5, 10.8)
-                         # Примечание: В качестве разделителя ставится
-                         # " . ", а не " , ".
-              
-              print("Привет") # вывод строчного типа данных
-                              # выводить можно в таком типе данных
-                              # что угодно как слова так и символы так
-                              # и цифры
-                              # Варианты записи print("  "), print('  ')
-              
-              #                   Переменные
-              # Переменная это хранилище для какого либо типа данных
-              # Варианты типа данных: int - целочисленный тип
-              #                       float - вещественный тип
-              #                       str - строковый тип данных
-              #
-              # Из чего состоит переменная:
-              # Имя переменной, данные которые хранит переменная.
-              #
-              # Правила при создании имени переменной:
-              # Имена переменных могут быть любой длины,
-              # могут иметь заглавные и
-              # строчные буквы(от A до Z, от a до z),
-              # цифру(0-9) и символ подчеркивания(_).
-              #
-              # Переменные предназначены для хранения данных.
-              # Название переменной в Python должно начинаться с
-              # алфавитного символа или со знака подчеркивания
-              # и может содержать алфавитно-цифровые символы
-              # и знак подчеркивания.
-              # И кроме того, название переменной не должно совпадать
-              # с названием ключевых слов языка Python.
-              #
-              # Ключевых слов не так много, их легко запомнить:
-              # False      await      else       import     pass
-              # None       break      except     in         raise
-              # True       class      finally    is         return
-              # and        continue   for        lambda     try
-              # as         def        from       nonlocal   while
-              # assert     del        global     not        with
-              # async      elif       if         or         yield
-              #
-              a = 5        # переменная имеет целочисленный тип данных
-              b = 5.5      # переменная имеет вещественный тип данных
-              c = "Привет" # переменная имеет строковый тип данных
-              
-              print(a)     # вывод переменной " a "
-              print(b)     # вывод переменной " b "
-              print(c)     # вывод переменной " c "
-              
-              input() #команда для ввода информации с клавиатуры
-              
-              # команда input() работает вместе с переменной
-              # Варианты написания:
-              # a = input() -> по умолчанию все что мы введём с клавиатуры
-              #                будет иметь строковый тип данных
-              
-              a = input("Введите данные: ") # -> комментарий при вводе
-              a = input('Введите данные: ') # -> комментарий при вводе
-              
-              # a = int(input()) - > введеные с клавиатуры данные
-              #                      примут целочисленное значение
-              # Примечание: если ввести символы или текст возникнет ошибка
-              #
-              # a = float(input()) - > введеные с клавиатуры данные
-              #                      примут вещественное значение
-              # Примечание: если ввести символы или текст возникнет ошибка
-              #
-              # a = str(input()) - > введеные с клавиатуры данные
-              #                      примут строковое значение значение
-              # Примечание: можно вводить что угодно
-              #
-              # Элементарные операции над переменными
-              # 1) Операция сложения. Знак операции " + "
-              # 2) Операция вычитание. Знак операции " - "
-              # 3) Операция умножения. Знак операции " * "
-              # 4) Операция деления. Знак операции " / "
-              #   Примечание: в Python существует 3 типа деления
-              #               более подробно в уроке " Типы деления "
-              # 5) Операция возведение в степень. Знак операции " ** "
-              
-              # Примечание: Элементарные математические операции можно
-              #             проводить только над типами данных int и float
-              
-              # Примеры элементарных операций
-              a = 7
-              b = 17
-              print(a + b)   # умножение
-              print(a - b)   # вычитание
-              print(a * b)   # умножение
-              print(a / b)   # деление
-              print(a ** b)  # возведение в степень</pre>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-          <button type="button" class="btn btn-primary">Понял</button>
-        </div>
+      <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+     
+
+
+
+        <!-- контейнер, в котором мы будем размещать нашу таблицу с задачами -->
+        <div id="tasksTableDiv" class="table-responsive mt-2"></div>
+        
+    
+        
       </div>
-    </div>
-  </div></div>
-              </div>
-              <div class="card-footer text-body-secondary">
-                2 days ago
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>      
-    </div>
-  </div>
+
+
+
+   
  
     
 
-<div include-html="footer.html" id="footer_file"></div>
+<div include-html="../footer.html" id="footer_file"></div>
       <button onclick="topFunction()" id="myBtn" title="Go to top">В начало</button>
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+      
+      <!-- подключаем для работы Google Charts -->
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+      <!-- скрипт с нашим кодом -->
+      <script type="text/javascript" src="main.js"></script>
+   
+   
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
