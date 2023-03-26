@@ -16,7 +16,7 @@ $( document ).ready(function() {//функция запускается, как 
 
 function loadTasks () {
 	var where = ($('#onlyInLine').prop('checked')) ? `WHERE C = 0` : ``;
-	googleQuery (tasks, '0', 'A:C', `SELECT * ${where} ORDER BY A LIMIT 100`);
+	googleQuery (tasks, '0', 'A:H', `SELECT * ${where} ORDER BY A LIMIT 100`);
 	//Эту функцию создал я для удобства. Она принимает следующие параметры по порядку:
 	//1. Уникальный идентификатор таблицы;
 	//2. Числовой идентификатор листа. По умолчанию у первого листа таблицы после ее создания он равен нулю. 
@@ -36,6 +36,7 @@ function googleQuery (sheet_id, sheet, range, query) {
 		//сама функция, выполняющая запрос к таблице
 		var gquery = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${sheet_id}/gviz/tq?gid=${sheet}&range=${range}&headers=1&tq=${query}`, opts);
 		//обозначаем, какая функция будет запущена при получении результатов
+		console.log(gquery);
 		gquery.send (callback);
 	}
 
@@ -62,11 +63,14 @@ function getTasks () {
         if (xhr.readyState == 4 && xhr.status == 200) {
         	//в случае успеха преобразуем полученный ответ в JSON и передаем отдельной функции, которая сформирует нам таблицу
         	var data = JSON.parse(xhr.response);
+			console.log(data);
         	tasksTable (data);
         }
     };
     try { xhr.send(); } catch (err) {console.log(err) }
 }
+
+setTimeout("window.location.reload(data)",10000)
 
 
 //функция, которая обработает данные, полученные при выполнении запроса и сформирует из них таблицу
@@ -88,21 +92,19 @@ function tasksTable (data) {
 		for ( i = 0; i < topic_name.length; i++  ) {
 			body_lesson = ''
 			for ( j = 0; j < data.Tf.length; j++ ) {
+				console.log(data.Tf[j].c[7]);
 				if (data.Tf[j].c[1].v==topic_name[i]){
 					body_lesson+=
 
 
 					`<div class="col-xl-4">
 				<div class="card text-center">
-				  <div class="card-header">
-					Featured
-				  </div>
 				  <div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					<h5 class="card-title">${data.Tf[j].c[4].v}</h5>
+					<p class="card-text">${data.Tf[j].c[6].v}</p>
 					<!-- Кнопка-триггер модального окна -->
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100% !important;">
-	${data.Tf[j].c[4]}
+	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100% !important;">
+	${data.Tf[j].c[4].v}
 	</button>
 	
 	<!-- Модальное окно -->
@@ -111,26 +113,23 @@ function tasksTable (data) {
 		<div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h1 class="modal-title fs-5" id="staticBackdropLabel">Заголовок модального окна</h1>
+			  <h1 class="modal-title fs-5" id="staticBackdropLabel">${data.Tf[j].c[4].v}</h1>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
 			</div>
 			<div class="modal-body">
 			  <div align="left">
 				<pre style="margin-bottom: 0; width: auto;">
+				${data.Tf[j].c[7].v}					
 				  </pre>
 				</div>
 			</div>
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-			  <button type="button" class="btn btn-primary">Понял</button>
 			</div>
 		  </div>
 		</div>
 	  </div></div>
-				  </div>
-				  <div class="card-footer text-body-secondary">
-					2 days ago
-				  </div>
+				  </div>				  
 				</div>
 			  </div>`
 
@@ -145,7 +144,7 @@ function tasksTable (data) {
 
 						x+= `
 		
-		<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${topic_id[i]}" aria-expanded="false" aria-controls="collapseExample" style="width: 100%;">
+		<button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#${topic_id[i]}" aria-expanded="false" aria-controls="collapseExample" style="width: 100%;">
         ${topic_name[i]}
       </button>
     </p>
