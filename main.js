@@ -36,7 +36,6 @@ function googleQuery (sheet_id, sheet, range, query) {
 		//сама функция, выполняющая запрос к таблице
 		var gquery = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${sheet_id}/gviz/tq?gid=${sheet}&range=${range}&headers=1&tq=${query}`, opts);
 		//обозначаем, какая функция будет запущена при получении результатов
-		console.log(gquery);
 		gquery.send (callback);
 	}
 
@@ -63,37 +62,45 @@ function getTasks () {
         if (xhr.readyState == 4 && xhr.status == 200) {
         	//в случае успеха преобразуем полученный ответ в JSON и передаем отдельной функции, которая сформирует нам таблицу
         	var data = JSON.parse(xhr.response);
-			console.log(data);
         	tasksTable (data);
         }
     };
     try { xhr.send(); } catch (err) {console.log(err) }
 }
 
-setTimeout("window.location.reload(data)",10000)
-
 
 //функция, которая обработает данные, полученные при выполнении запроса и сформирует из них таблицу
 function tasksTable (data) {
 	$('#tasksTableDiv').html(function(){
 
-	var topic_name = [];
 	var topic_id = [];
+	var topic_name = [];
 	for (i = 0; i < data.Tf.length; i++ ){
-		if (topic_name.includes(data.Tf[i].c[1].v)==false){
-			topic_name.push(data.Tf[i].c[1].v)
+		if (topic_id.includes(data.Tf[i].c[0].v)==false){
 			topic_id.push(data.Tf[i].c[0].v)
+			topic_name.push(data.Tf[i].c[1].v)
 		}
-		console.log(topic_name);
-		console.log(topic_id);
+		//console.log(topic_name);
 	}
-	test = "test"
 	x=''
-		for ( i = 0; i < topic_name.length; i++  ) {
+	count = 1;
+		for ( m = 0; m < data.Tf.length; m++ ) {		
+			//Сортировка по порядку
+			for ( i = 0; i < topic_id.length; i++  ) {
+				//console.log(count);
+				//console.log(Number(data.Tf[i].c[2].v));
+				if(Number(data.Tf[i].c[2].v) == count){
 			body_lesson = ''
+			countLesson = 1;
+			for ( n = 0; n < data.Tf.length; n++ ) {
 			for ( j = 0; j < data.Tf.length; j++ ) {
+				console.log(countLesson);
+				console.log(Number(data.Tf[i].c[5].v));
+				if(Number(data.Tf[j].c[5].v) == countLesson){
+				//Вывод тем
 				console.log(data.Tf[j].c[7]);
-				if (data.Tf[j].c[1].v==topic_name[i]){
+				if (data.Tf[j].c[0].v==topic_id[i]){
+					//Вывод уроков по темам
 					body_lesson+=
 
 
@@ -103,13 +110,13 @@ function tasksTable (data) {
 					<h5 class="card-title">${data.Tf[j].c[4].v}</h5>
 					<p class="card-text">${data.Tf[j].c[6].v}</p>
 					<!-- Кнопка-триггер модального окна -->
-	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100% !important;">
+	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#${data.Tf[j].c[3].v}" style="width: 100% !important;">
 	${data.Tf[j].c[4].v}
 	</button>
 	
 	<!-- Модальное окно -->
 	<div class="container-fluid" style="margin-top: 10px;">
-	  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal fade" id="${data.Tf[j].c[3].v}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -136,10 +143,12 @@ function tasksTable (data) {
 
 
 
-
+				}
 				}
 			}
-
+			countLesson += 1;
+				}
+				
 
 
 						x+= `
@@ -157,6 +166,11 @@ function tasksTable (data) {
 		
 	
 }
+		
+		}
+		count += 1;
+	}
+	
 
 	return x;
 	})
@@ -167,7 +181,7 @@ function tasksTable (data) {
 
 
 
-
+		
 
 
 
