@@ -75,13 +75,26 @@ function tasksTable (data) {
 
 	var topic_id = [];
 	var topic_name = [];
+	count_id = 1;
+	for (j = 0; j < data.Tf.length; j++ ){
 	for (i = 0; i < data.Tf.length; i++ ){
-		if (topic_id.includes(data.Tf[i].c[0].v)==false){
+		console.log(i);
+		console.log(data.Tf[i]);
+		if (topic_id.includes(data.Tf[i].c[0].v)==false && Number(data.Tf[i].c[2].v)==count_id){
+			
 			topic_id.push(data.Tf[i].c[0].v)
 			topic_name.push(data.Tf[i].c[1].v)
+			count_id += 1
 		}
+		
 		//console.log(topic_name);
 	}
+	}
+
+
+
+
+
 	x=''
 	count = 1;
 		for ( m = 0; m < data.Tf.length; m++ ) {		
@@ -111,7 +124,7 @@ function tasksTable (data) {
 					<p class="card-text">${data.Tf[j].c[6].v}</p>
 					<!-- Кнопка-триггер модального окна -->
 	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#${data.Tf[j].c[3].v}" style="width: 100% !important;">
-	${data.Tf[j].c[4].v}
+	Подробнее
 	</button>
 	
 	<!-- Модальное окно -->
@@ -125,9 +138,7 @@ function tasksTable (data) {
 			</div>
 			<div class="modal-body">
 			  <div align="left">
-				<pre style="margin-bottom: 0; width: auto;">
-				${data.Tf[j].c[7].v}					
-				  </pre>
+				<pre style="margin-bottom: 0; width: auto;">${data.Tf[j].c[7].v}</pre>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -154,7 +165,7 @@ function tasksTable (data) {
 						x+= `
 		
 		<button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#${topic_id[i]}" aria-expanded="false" aria-controls="collapseExample" style="width: 100%;">
-        ${topic_name[i]}
+        Тема: ${topic_name[i]}
       </button>
     </p>
     <div class="collapse" id="${topic_id[i]}">

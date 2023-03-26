@@ -101,3 +101,67 @@ function tasksTable (data) {
 	return x;
 	})
 }
+
+
+
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="width: 100%;">
+        Button with data-bs-target
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="card text-center">
+              <div class="card-header">
+                Featured
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <!-- Кнопка-триггер модального окна -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Запустить модальное окно со статическим фоном
+</button>
+
+<!-- Модальное окно -->
+<div class="container-fluid" style="margin-top: 10px;">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Заголовок модального окна</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <div align="left">
+            <pre style="margin-bottom: 0; width: auto;">
+              </pre>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-primary">Понял</button>
+        </div>
+      </div>
+    </div>
+  </div></div>
+              </div>
+              <div class="card-footer text-body-secondary">
+                2 days ago
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>      
+    </div>
+
+
+
+
+
+
+
+
+
