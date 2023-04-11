@@ -190,6 +190,45 @@ function tasksTable (data) {
 //${data.Tf[i].c[1].v}
 
 
+gapi.load('client', () => {
+  gapi.client.init({
+    apiKey: 'API',
+    discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+  }).then(() => {
+    // указываем идентификатор
+    const spreadsheetId = 'ID';
+
+    // указываем диапазон ячеек
+    const range = 'Sheet1!A1:C3';
+
+    // загружаем данные из Google Таблицы
+    gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    }).then((response) => {
+      const data = response.result.values;
+
+      // проходимся по каждому элементу массива и обновляем
+      data.forEach((row) => {
+        const fileName = row[0];
+        const fileUrl = row[1];
+        const fileVersion = row[2];
+
+        fetch(fileUrl)
+          .then((response) => response.text())
+          .then((text) => {
+
+            console.log(`File ${fileName} has been updated.`);
+          })
+          .catch((error) => {
+            console.error(`Error updating file ${fileName}:`, error);
+          });
+      });
+    });
+  });
+});
+
+
 
 
 		
