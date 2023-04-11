@@ -199,7 +199,7 @@ gapi.load('client', () => {
     const spreadsheetId = 'ID';
 
     // указываем диапазон ячеек
-    const range = 'Sheet1!A1:C3';
+    const range = 'task!A:H';
 
     // загружаем данные из Google Таблицы
     gapi.client.sheets.spreadsheets.values.get({
