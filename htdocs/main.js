@@ -201,6 +201,7 @@ const start = () => {
 	  .then((response) => {
 		// parse the response data
 		const loadedData = response.result.values;
+		console.log(loadedData);
 	
 		// populate the HTML table with the data
 		const table = document.getElementsByTagName('table')[0];
@@ -212,10 +213,11 @@ const start = () => {
 		table.appendChild(columnHeaders);
 	
 		// add table data rows
-		for (let i = 0; i < loadedData.length; i++) {			
+		for (let i = 1; i < loadedData.length; i++) {			
 		  const tableRow = document.createElement('tr');
 		  for (let j = 0; j < loadedData.length; j++) {
-		  tableRow.innerHTML = `<td>${loadedData[i][j]}</td>`};
+		  	tableRow.innerHTML += `<td>${loadedData[i][j]}</td>`
+			};
 		  table.appendChild(tableRow);
 		}
 	  }).catch((err) => {
